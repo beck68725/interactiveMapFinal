@@ -1,30 +1,32 @@
-var map = L.map('map').setView([42.7550044, -98.809875], 13);
-// Create map:                                                       
-// const myMap = {
-//     coordinates: [],
-//     businesses: [],
-//     map: {},
-//     markers: {},
 
-// //build map
-//     buildMap() {
-//         this.map = Lmap('map', {
-//             center: this.coordinates,
-//             zoom: 11,
-//         }),
-//     // Add OpenStreetMap tiles:
+//Create map:                                                       
+ const myMap = {
+    coordinates: [],
+    businesses: [],
+    map: {},
+    markers: {},
+
+//build map
+    buildMap() {
+        this.map = L.map('map', {
+            center: this.coordinates,
+            zoom: 11,
+        }),
+        
+      // var map = L.map('map').setView([this.coordinates], 13);
+    // Add OpenStreetMap tiles:
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+    }).addTo(this.map),
 
     //     // Create and add a geolocation marker:
-    L.marker([42.7550044, -98.809875]).addTo(map)
+    L.marker([this.coordinates]).addTo(this.map)
         .bindPopup('You are here.')
-        .openPopup();
+        .openPopup(),
 
-//     },
-// }
+    
+}
 //find user's location
 
       var div  = document.getElementById("location");
@@ -47,3 +49,15 @@ var map = L.map('map').setView([42.7550044, -98.809875], 13);
       }
       getLocation();
     
+      const options = {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          Authorization: 'fsq3FCLMyAhKd7/IcJYt3cQAbGtfCSvfjppsffWlHSoO5Lg='
+        }
+      };
+      
+      fetch('https://api.foursquare.com/v3/places/search?query=restaurant&ll=42.7550044%2C-98.8098758&radius=2000&limit=5', options)
+        .then(response => response.json())
+        .then(response => console.log(response))
+        .catch(err => console.error(err));
