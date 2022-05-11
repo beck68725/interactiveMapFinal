@@ -17,13 +17,13 @@
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-          minZoom: '15',
+          minZoom: '11',
         }).addTo(this.map)
         // create and add geolocation marker
         const marker = L.marker(this.coordinates)
         marker
         .addTo(this.map)
-        .bindPopup('<p1><b>You are here</b><br></p1>')
+        .bindPopup('<p1><b>You are here</b><br>Have a Nice Day!</p1>')
         .openPopup()
       },
     
